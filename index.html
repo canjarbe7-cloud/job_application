@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application</title>
+    <!-- Formani tayyorlashga sarflangan vaqt: 2 soat -->
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        fieldset {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        legend {
+            font-weight: bold;
+            padding: 0 8px;
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .field {
+            flex: 1;
+            min-width: 180px;
+            margin-bottom: 12px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="date"],
+        input[type="url"],
+        input[type="file"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 9px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .radio-group label {
+            margin-right: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background: #f7f7f7;
+        }
+
+        td:first-child {
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #0057d9;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #003f9e;
+        }
+
+        .time-spent {
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Job Application</h1>
+
+    <form action="/submit-application" method="post" enctype="multipart/form-data">
+
+        <!-- Shaxsiy ma'lumotlar -->
+        <fieldset>
+            <legend>Shaxsiy ma'lumotlar</legend>
+
+            <div class="row">
+                <div class="field">
+                    <label for="first_name">Ism</label>
+                    <input type="text" id="first_name" name="first_name" placeholder="Ismingiz" required>
+                </div>
+                <div class="field">
+                    <label for="last_name">Familiya</label>
+                    <input type="text" id="last_name" name="last_name" placeholder="Familiyangiz" required>
+                </div>
+                <div class="field">
+                    <label for="middle_name">Otasining ismi</label>
+                    <input type="text" id="middle_name" name="middle_name" placeholder="Otangizning ismi">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label for="height">Bo'y (sm)</label>
+                    <input type="number" id="height" name="height" min="100" max="250" placeholder="175">
+                </div>
+                <div class="field">
+                    <label for="weight">Og'irlik (kg)</label>
+                    <input type="number" id="weight" name="weight" min="30" max="250" placeholder="70">
+                </div>
+                <div class="field">
+                    <label for="birth_date">Tug'ilgan sana</label>
+                    <input type="date" id="birth_date" name="birth_date" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+                </div>
+                <div class="field">
+                    <label for="phone">Telefon raqam</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+998 90 123 45 67" required>
+                </div>
+            </div>
+
+            <div class="field radio-group">
+                <p>Oilaviy holat</p>
+                <input type="radio" id="marital_divorced" name="marital_status" value="divorced">
+                <label for="marital_divorced">Ajrashgan</label>
+
+                <input type="radio" id="marital_married" name="marital_status" value="married">
+                <label for="marital_married">Turmush qurgan</label>
+
+                <input type="radio" id="marital_single" name="marital_status" value="single">
+                <label for="marital_single">Bo'ydoq</label>
+
+                <input type="radio" id="marital_other" name="marital_status" value="other">
+                <label for="marital_other">Boshqa</label>
+            </div>
+        </fieldset>
+
+        <!-- Manzil va profillar -->
+        <fieldset>
+            <legend>Manzil va profillar</legend>
+
+            <div class="field">
+                <label for="street">Ko'cha</label>
+                <input type="text" id="street" name="street" placeholder="Ko'cha nomi, uy raqami">
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label for="city">Shahar</label>
+                    <input type="text" id="city" name="city" placeholder="Toshkent">
+                </div>
+                <div class="field">
+                    <label for="region">Viloyat</label>
+                    <input type="text" id="region" name="region" placeholder="Toshkent viloyati">
+                </div>
+                <div class="field">
+                    <label for="zip_code">Pochta indeksi</label>
+                    <input type="text" id="zip_code" name="zip_code" placeholder="100000">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="linkedin">LinkedIn URL</label>
+                <input type="url" id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/username">
+            </div>
+        </fieldset>
+
+        <!-- Professional ma'lumotlar -->
+        <fieldset>
+            <legend>Professional ma'lumotlar</legend>
+
+            <div class="row">
+                <div class="field">
+                    <label for="position">Lavozim</label>
+                    <select id="position" name="position" required>
+                        <option value="">-- Tanlang --</option>
+                        <option value="frontend">Frontend Developer</option>
+                        <option value="backend">Backend Developer</option>
+                        <option value="designer">Designer</option>
+                        <option value="manager">Manager</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="experience">Tajriba (yil)</label>
+                    <input type="number" id="experience" name="experience" min="0" max="50" placeholder="0">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="source">Biz haqimizda qayerdan eshitdingiz?</label>
+                <select id="source" name="source">
+                    <option value="">-- Tanlang --</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="telegram">Telegram</option>
+                    <option value="website">Veb-sayt</option>
+                    <option value="friend">Do'st / tanish</option>
+                    <option value="other">Boshqa</option>
+                </select>
+            </div>
+        </fieldset>
+
+        <!-- Kompyuter ko'nikmalari -->
+        <fieldset>
+            <legend>Kompyuter ko'nikmalari</legend>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dastur</th>
+                        <th>Boshlang'ich</th>
+                        <th>O'rta</th>
+                        <th>Yuqori</th>
+                        <th>Ekspert</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Excel</td>
+                        <td>
+                            <input type="radio" id="excel_beginner" name="skill_excel" value="beginner">
+                            <label for="excel_beginner" class="sr-only">Excel - Boshlang'ich</label>
+                        </td>
+                        <td>
+                            <input type="radio" id="excel_intermediate" name="skill_excel" value="intermediate">
+                            <label for="excel_intermediate" class="sr-only">Excel - O'rta</label>
+                        </td>
+                        <td>
+                            <input type="radio" id="excel_advanced" name="skill_excel" value="advanced">
+                            <label for="excel_advanced" class="sr-only">Excel - Yuqori</label>
+                        </td>
+                        <td>
+                            <input type="radio" id="excel_expert" name="skill_excel" value="expert">
+                            <label for="excel_expert" class="sr-only">Excel - Ekspert</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Word</td>
+                        <td>
+                            <input type="radio" id="word_beginner" name="skill_word" value="beginner">
+                            <label for="word_beginner" class="sr-only">Word - Boshlang'ich</label>
+                        </td>
+                        <td>
+                            <input type="radio" id="word_intermediate" name="skill_word" value="intermediate">
+                            <label for="word_intermediate" class="sr-only">Word - O'rta</label>
+                        </td>
+                        <td>
+                            <input type="radio" id="word_advanced" name="skill_word" value="advanced">
+                            <label for="word_advanced" class="sr-only">Word - Yuqori</label>
+                        </td>
+                        <td>
+                            <input type="radio" id="word_expert" name="skill_word" value="expert">
+                            <label for="word_expert" class="sr-only">Word - Ekspert</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1C</td>
+                        <td>
+                            <input type="radio" id="1c_beginner" name="skill_1c" value="beginner">
+                            <label for="1c_beginner" class="sr-only">1C - Boshlang'ich</label>
+                        </td>
+                        <td>
+                            <input type="radio" id="1c_intermediate" name="skill_1c" value="intermediate">
+                            <label for="1c_intermediate" class="sr-only">1C - O'rta</label>
+                        </td>
+                        <td>
+                            <input type="radio" id="1c_advanced" name="skill_1c" value="advanced">
+                            <label for="1c_advanced" class="sr-only">1C - Yuqori</label>
+                        </td>
+                        <td>
+                            <input type="radio" id="1c_expert" name="skill_1c" value="expert">
+                            <label for="1c_expert" class="sr-only">1C - Ekspert</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dasturlash tili</td>
+                        <td>
+                            <input type="radio" id="programming_beginner" name="skill_programming" value="beginner">
+                            <label for="programming_beginner" class="sr-only">Dasturlash tili - Boshlang'ich</label>
+                        </td>
+                        <td>
+                            <input type="radio" id="programming_intermediate" name="skill_programming" value="intermediate">
+                            <label for="programming_intermediate" class="sr-only">Dasturlash tili - O'rta</label>
+                        </td>
+                        <td>
+                            <input type="radio" id="programming_advanced" name="skill_programming" value="advanced">
+                            <label for="programming_advanced" class="sr-only">Dasturlash tili - Yuqori</label>
+                        </td>
+                        <td>
+                            <input type="radio" id="programming_expert" name="skill_programming" value="expert">
+                            <label for="programming_expert" class="sr-only">Dasturlash tili - Ekspert</label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+
+        <!-- Fayllar va muqova xati -->
+        <fieldset>
+            <legend>Hujjatlar</legend>
+
+            <div class="row">
+                <div class="field">
+                    <label for="document">Hujjat (pasport / ID)</label>
+                    <input type="file" id="document" name="document" accept=".pdf,.jpg,.jpeg,.png">
+                </div>
+                <div class="field">
+                    <label for="resume">Rezyume</label>
+                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="cover_letter">Muqova xati (Cover Letter)</label>
+                <textarea id="cover_letter" name="cover_letter" placeholder="O'zingiz haqingizda va nima uchun bu lavozimga mos ekanligingiz haqida yozing..."></textarea>
+            </div>
+        </fieldset>
+
+        <button type="submit">Ariza yuborish</button>
+    </form>
+
+    <p class="time-spent">Formani tayyorlashga sarflangan vaqt: 2 soat</p>
+</div>
+
+</body>
+</html>
